@@ -1,6 +1,27 @@
 
 # High-Availability MySQL Database Cluster on RHEL
 
+```mermaid
+graph TD
+    subgraph MySQL Cluster
+        A1[db1 - MySQL Server]
+        A2[db2 - MySQL Server]
+        A3[db3 - MySQL Server]
+    end
+    
+    subgraph Client Access
+        B[Application]
+    end
+    
+    B -->|Reads/Writes| A1 & A2 & A3
+    A1 <--> A2 <--> A3
+    subgraph Storage
+        A1 --> C1[Persistent Storage - db1]
+        A2 --> C2[Persistent Storage - db2]
+        A3 --> C3[Persistent Storage - db3]
+    end
+```
+
 ## Objective:
 Set up a high-availability MySQL database cluster using Red Hat Enterprise Linux (RHEL). The cluster will use MySQL Group Replication for high availability and redundancy.
 
